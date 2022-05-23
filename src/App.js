@@ -1,67 +1,48 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 
 import SearchBox from "./components/search-box/search-box.component";
 import Cardlist from "./components/card-list/card-list.component";
 import "./App.css";
 
-class App extends Component {
-	constructor() {
-		super();
+const App = () => {
+	const [searchField, setSearchField] = useState('');
+	const [users, setUsers] = useState([]);
+	const [filteredUsers, setFilteredUsers] = useState(users);
 
-		this.state = {
-			users: [],
-			searchField: "",
-			userResults: 16
-		};
-	}
+	useEffect(() => {
+		fetch(`https://randomuser.me/api?results=16`)
+			.then(res => res.json())
+			.then(users => setUsers(users.results));
+	}, [])
 
-	// ! If needs data to inject to state (Fetch API) use here
-	componentDidMount() {
-		fetch(`https://randomuser.me/api?results=${this.state.userResults}`)
-			// fetch("https://jsonplaceholder.typicode.com/users")
-			.then((res) => res.json())
-			.then((users) =>
-				this.setState(
-					() => {
-						return { users: users.results };
-					}
-				)
-			);
-	};
-
-	onSearchChange = event => {
-		const searchField = event.target.value.toLocaleUpperCase();
-
-		this.setState(() => {
-			return { searchField };
+	useEffect(() => {
+		const newFilteredusers = users.filter((user) => {
+			return fullName(user.name).toLocaleLowerCase().includes(searchField);
 		});
+		setFilteredUsers(newFilteredusers);
+
+	}, [users, searchField])
+
+	const onSearchChange = event => {
+		const searchFieldString = event.target.value.toLocaleLowerCase();
+		setSearchField(searchFieldString);
 	};
 
-	fullName = name => {
+	const fullName = name => {
 		return `${name.first} ${name.last}`;
 	};
 
-	render() {
-		const { users, searchField } = this.state;
-		const { onSearchChange, fullName } = this;
-
-
-		const filteredusers = users.filter((user) => {
-			return fullName(user.name).toLocaleUpperCase().includes(searchField);
-		});
-
-		return (
-			<div className="App">
-				<h1 className="app-title">Random User</h1>
-				<SearchBox
-					className="users-search-box"
-					onChangeHandler={ onSearchChange }
-					placeholder='Search users...'
-				/>
-				<Cardlist users={ filteredusers } />
-			</div>
-		);
-	};
-};
+	return (
+		<div className="App">
+			<h1 className="app-title">Random User</h1>
+			<SearchBox
+				className="users-search-box"
+				onChangeHandler={ onSearchChange }
+				placeholder='Search users...'
+			/>
+			<Cardlist users={ filteredUsers } />
+		</div>
+	)
+}
 
 export default App;
