@@ -1,0 +1,16 @@
+.search-box {
+	-webkit-appearance: none;
+	color             : #40415E;
+	border            : none;
+	border-bottom     : 1px solid #40415E;
+	outline           : none;
+	padding           : .5em 1em;
+	max-width         : 400px;
+	width             : 100%;
+	margin-bottom     : 3em;
+	background        : none;
+}
+
+.search-box::placeholder {
+	color: #40415E;
+}

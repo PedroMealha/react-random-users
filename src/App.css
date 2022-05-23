@@ -1,0 +1,14 @@
+body {
+	margin                 : 0;
+	padding                : 0;
+	font-family            : system-ui;
+	-webkit-font-smoothing : antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-align             : center;
+	background             : linear-gradient(to left, #D7DDE8, #757F9A);
+}
+
+.app-title {
+	padding-top: .5em;
+	color      : #40415E;
+}
