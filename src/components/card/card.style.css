@@ -1,35 +1,27 @@
 .card-container {
+	width                  : 13em;
+	height                 : 13em;
 	display                : flex;
 	flex-direction         : column;
 	align-items            : center;
-	background-color       : #40415E;
-	border-radius          : 10%;
+	justify-content        : space-between;
 	padding                : 1em;
 	cursor                 : pointer;
 	-moz-osx-font-smoothing: grayscale;
 	backface-visibility    : hidden;
-	transition             : transform 0.25s ease-out;
-	will-change            : transform;
+	transition             : background 0.25s ease-out;
+	background-color       : #40415E;
 	color                  : lightblue;
 	/* clip-path           : polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0% 100%, 0% 10%); */
 	clip-path              : polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0% 10%);
 }
 
 .card-container:hover {
-	transform: scale(1.05);
+	background-color: #5E405D;
 }
 
 .card-container img {
 	border-radius: 50%;
 	max-width    : 10em;
 	border       : 4px solid #9799d0;
-}
-
-h3 {
-	margin-bottom: .5em;
-}
-
-p {
-	font-size: .9em;
-	margin   : 0;
 }

@@ -7,10 +7,15 @@
 	padding           : .5em 1em;
 	max-width         : 400px;
 	width             : 100%;
-	margin-bottom     : 3em;
+	margin            : 2em 0 2.5em;
 	background        : none;
+	font-size         : 1em;
 }
 
 .search-box::placeholder {
 	color: #40415E;
+}
+
+p {
+	font-size: .9em;
 }
